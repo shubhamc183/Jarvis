@@ -22,7 +22,7 @@ To speak
 
   https://github.com/parente/pyttsx
   
-Available Commands:
+Available VOICE Commands:
 
 jarvis play music  -- randomly plays a song
 
