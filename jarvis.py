@@ -13,8 +13,8 @@ m=sr.Microphone()
 playing=[]
 jobs=[]
 change=0
-f=open('details','r')
-s=f.read()
+f=open('details','r')				#details is a text files containing all the songs name in your music directory
+s=f.read()					# to create details use the commanad 'ls | cat >details
 SONGS=s.split('\n')
 songs=(s.lower()).split('\n')
 f.close()
