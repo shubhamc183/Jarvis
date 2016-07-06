@@ -1,6 +1,6 @@
 # Jarvis(Version 1)
 
-Only for linux system(Any unix-based OS)
+Only for linux system(Any *nix-based OS)
 
 Personal Assistant Using Python Programming     
 Can be thought of three parts 
