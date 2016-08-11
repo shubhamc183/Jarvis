@@ -38,4 +38,4 @@ jarvis read new/news ---- reads top 5 news from Google Feed
 ```
 
 [df1]: <https://github.com/Uberi/speech_recognition>
-[df2]:<  https://github.com/westonpace/pyttsx>
+[df2]: <https://github.com/westonpace/pyttsx>
