@@ -5,6 +5,7 @@ import os
 import threading
 import time
 import requests
+import json
 from bs4 import BeautifulSoup
 engine=pyttsx.init()
 engine.setProperty('rate',140)
@@ -19,6 +20,7 @@ SONGS=s.split('\n')
 songs=(s.lower()).split('\n')
 f.close()
 t=len(songs)
+access_token="Your_FACEBOOK_ACCESS_TOKEN_____V2.0.........REQUIRED WITH read_mailbox and manage_notifications PERMISSIONS"
 #----------------------------------------------------------------------------------------------------------
 def speak(s):
 	engine.say(s)
@@ -101,6 +103,37 @@ def news():
 		speak(l[i])
 		time.sleep(.2)
 #--------------------------------------------------------------------------------------
+def msg():
+	q=requests.get("https://graph.facebook.com/me/inbox/?fields=message,to,from,unseen&access_token="+access_token)
+	res=json.loads(q.text)
+	c=0
+	for mes in res['data']:
+		if mes['unseen']==1:
+			m=mes['to']['data'][0]['name']
+			print(m)
+			if c==0:
+				speak("You have messages from")
+				c=1
+			print(m)
+			speak(m)
+			time.sleep(.2)
+	if c==0:
+		print("No message")
+		speak("No messages sir")
+#-----------------------------------------------------------------------------------------
+def notify():
+	url=requests.get('https://graph.facebook.com/me/notifications/?fields=unread,from,title&access_token='+access_token)
+	a=json.loads(url.text)
+	c=0
+	for n in a['data']:
+		if c==0:
+			c=1
+		print(n['from']['name'],"----->",n['title'])
+		speak(n['title'])
+	if c==0:
+		print("No NOTIFICATION")
+		speak("no notification sir")
+#-------------------------------------------------------------------------------------------------
 def  brain(s):
 	global change								#works only when 'jarvis' is said..!
 	change=0
@@ -173,6 +206,12 @@ def  brain(s):
 				speak(t)
 				change=1 
 		if l[1]=='read':
+			if l[2]=="message" or l[2]=="messages":
+				change=1
+				msg()
+			if l[2]=="notification" or l[2]=="notifications":
+				change=1
+				notify()
 			if l[2]=='fortune':					#to read fortune
 				change=1					#fortune is a package in linux which tells a randomfortune
 				os.system('fortune -s > f') 
