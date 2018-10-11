@@ -12,6 +12,14 @@ Can be thought of three parts
 
 - [Mouth][df2]
 
+# Requirements
+
+`pip3 install SpeechRecognition`
+
+`pip3 install requests`
+
+`pip3 install beautifulsoup4`
+
 # Available VOICE Commands:
 ```sh
 jarvis play music  -- randomly plays a song
